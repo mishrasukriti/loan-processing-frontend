@@ -20,7 +20,7 @@ const Invoice = () => {
 
   useEffect(() => {
     
-    const url = "http://localhost:4050/api/userActivity/fetchLoanRequests";
+    const url = "https://loan-processing-backend.herokuapp.com/api/userActivity/fetchLoanRequests";
     const getLoanRequests = async () => {
       const token = localStorage.getItem("token");
       const email = localStorage.getItem('email');

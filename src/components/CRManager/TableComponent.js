@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const TableComponent = ({loanRequests}) => {
     const [isLoading, setLoading] = useState(true);
-    const url = "http://localhost:4050/api/crmActivity/updateLoanStatus";
+    const url = "https://loan-processing-backend.herokuapp.com/api/crmActivity/updateLoanStatus";
     const approveLoan = async (loanRequestId)=>{
         const token = localStorage.getItem("token");
         // console.log("Got requestId as: ", requestId);

@@ -30,7 +30,7 @@ const LoanRequest = ({ match }) => {
 
   useEffect(() => {
     
-    const url = "http://localhost:4050/api/bankManagerActivity/listAllLoanRequests";
+    const url = "https://loan-processing-backend.herokuapp.com/api/bankManagerActivity/listAllLoanRequests";
     const getLoanRequest = async () => {
       const token = localStorage.getItem("token");
       axios({

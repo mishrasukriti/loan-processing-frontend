@@ -24,7 +24,7 @@ const Invoice = () => {
   const onFormSubmit= (e)=>{
     console.log("clicked on form submit")
     // setLoading(true);
-    const url = "http://localhost:4050/api/userActivity/applyLoan";
+    const url = "https://loan-processing-backend.herokuapp.com/api/userActivity/applyLoan";
     const token = localStorage.getItem("token");
     const localStorageEmail = localStorage.getItem('email');
     if(email !== localStorageEmail) {
@@ -59,7 +59,7 @@ const Invoice = () => {
 
   useEffect(() => {
     
-    const url = "http://localhost:4050/api/crmActivity/listCRMLoanRequests";
+    const url = "https://loan-processing-backend.herokuapp.com/api/crmActivity/listCRMLoanRequests";
     const getLoanRequests = async () => {
       const token = localStorage.getItem("token");
       const email = localStorage.getItem('email');

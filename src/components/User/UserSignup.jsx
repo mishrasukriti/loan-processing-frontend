@@ -20,7 +20,7 @@ const UserSignup = () => {
 
   const history = useHistory();
 
-  const url = `http://localhost:4050/api/user/login`;
+  const url = `https://loan-processing-backend.herokuapp.com/api/user/login`;
 
   const ErrorNotify = (message) => toast.error(message);
 
@@ -85,7 +85,7 @@ const UserSignup = () => {
   const onFormSubmit= (e)=>{
     console.log("clicked on form submit")
     // setLoading(true);
-    const url = "http://localhost:4050/api/user/register";
+    const url = "https://loan-processing-backend.herokuapp.com/api/user/register";
     const token = localStorage.getItem("token");
     
     e.preventDefault();

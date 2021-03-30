@@ -17,7 +17,7 @@ const BankManagerLogin = () => {
 
   const history = useHistory();
 
-  const url = `http://localhost:4050/api/crManager/login`;
+  const url = `https://loan-processing-backend.herokuapp.com/api/crManager/login`;
 
   const ErrorNotify = (message) => toast.error(message);
 
