@@ -92,57 +92,57 @@ const BankManagerLogin = () => {
             <nav>
           {/* <div><img  src={logo} alt=""/> </div> */}
             <div >
-              <div class="ui inverted segment">
-                <div class="ui inverted secondary pointing menu">
-                  <a class="item active" href="/userlogin">
+              <div className="ui inverted segment">
+                <div className="ui inverted secondary pointing menu">
+                  <a className="item active" href="/userlogin">
                   User
                   </a>
-                  <a class="item" href="/crManagerlogin">
+                  <a className="item" href="/crManagerlogin">
                   CRManager
                   </a>
-                  <a class="item" href="/bankManagerlogin">
+                  <a className="item" href="/bankManagerlogin">
                   BankManager
                   </a>
                 </div>
               </div>
             </div>
           </nav>
-          <div class="ui placeholder segment">
-          <div class="ui two column very relaxed stackable grid">
-            <div class="column">
-              <div class="ui form">
-                <div class="field">
+          <div className="ui placeholder segment">
+          <div className="ui two column very relaxed stackable grid">
+            <div className="column">
+              <div className="ui form">
+                <div className="field">
                   <label>Username</label>
-                  <div class="ui left icon input">
+                  <div className="ui left icon input">
                     <input type="text"  name="email" placeholder="enter email-id" onChange={(e) => validateAndSetEmail(e.target.value)}/>
                     <ErrorMsg show={showEmailError} msg={'Invalid e-mail!'} />
-                    <i class="user icon"></i>
+                    <i className="user icon"></i>
                   </div>
                 </div>
-                <div class="field">
+                <div className="field">
                   <label>Password</label>
-                  <div class="ui left icon input">
+                  <div className="ui left icon input">
                     <input type="password" name="password" placeholder="enter password" onChange={(e) => validateAndSetPassword(e.target.value)}/>
                     <ErrorMsg show={showPasswordError} msg={'Empty password!'} />
-                    <i class="lock icon"></i>
+                    <i className="lock icon"></i>
                   </div>
                 </div>
-                <div class="ui blue submit button" onClick={(e) => loginUser(e)} disabled={!validEmail || !validPassword}>Login</div>
+                <div className="ui blue submit button" onClick={(e) => loginUser(e)} disabled={!validEmail || !validPassword}>Login</div>
               </div>
             </div>
-            <div class="middle aligned column">
-              <div class="ui big button">
-                <i class="signup icon"></i>
+            <div className="middle aligned column">
+              <div className="ui big button">
+                <i className="signup icon"></i>
                 Sign Up
               </div>
               <br/>
-              <div class="ui big button" onClick={(event) => {event.preventDefault();history.push("/");}}>
-                <i class="signup icon"></i>
+              <div className="ui big button" onClick={(event) => {event.preventDefault();history.push("/");}}>
+                <i className="signup icon"></i>
                 Go Back
               </div>
             </div>
           </div>
-          <div class="ui vertical divider">
+          <div className="ui vertical divider">
             Or
           </div>
         </div>

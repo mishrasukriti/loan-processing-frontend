@@ -11,8 +11,7 @@ const AllLoanRequest = () => {
   const [loanAmount, setLoanAmount] = useState(0);
   
   const onFormSubmit= (e)=>{
-    console.log("clicked on form submit")
-
+    
     const url = "https://loan-processing-backend.herokuapp.com/api/userActivity/applyLoan";
     const token = localStorage.getItem("token");
     const localStorageEmail = localStorage.getItem('email');
@@ -34,8 +33,9 @@ const AllLoanRequest = () => {
       }
     })
       .then((response) => {
-        console.log("response in get AllgetLoanRequests which is loan amount is: ", response.data);
-        alert("Loan Application Successful. Please note Loan requestId for further correspondence!!", response.data);
+        // console.log("response in get AllgetLoanRequests which is loan amount is: ", response.data);
+        const loanId = response.data.loanRequestId;
+        alert(`Loan Application Successful. Your Loan-Request-Id is: ${loanId} .Please note it for further correspondence!!` );
         setLoading(false);
       })
       .catch((err) => {
