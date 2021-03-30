@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Sidenav from "../Sidenav";
 import { useSelector, useDispatch } from "react-redux";
@@ -34,7 +33,6 @@ const Invoice = () => {
         .then((response) => {
           console.log("response in get AllgetLoanRequests is: ", response.data);
           dispatch(LoadLoanRequests(response.data));
-          console.log("results is: ", results);
           setLoading(false);
         })
         .catch((err) => {

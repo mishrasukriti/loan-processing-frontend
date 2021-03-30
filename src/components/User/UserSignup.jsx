@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Loader from "react-loader-spinner";
+import { ToastContainer} from "react-toastify";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import ErrorMsg from '../ErrorMsg';
-import { Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
-
+import Loader from "react-loader-spinner";
+import ErrorMsg from "../ErrorMsg";
 
 const UserSignup = () => {
   const [isLoading, setLoading] = useState(false);
@@ -20,39 +18,7 @@ const UserSignup = () => {
 
   const history = useHistory();
 
-  const url = `https://loan-processing-backend.herokuapp.com/api/user/login`;
-
-  const ErrorNotify = (message) => toast.error(message);
-
-  const loginUser = (event) => {
-    setLoading(true);
-    event.preventDefault();
-    
-    const response = { email: email, password: password };
-    axios({
-      url: url,
-      method: "POST",
-      data: response,
-    })
-      .then((response) => {
-        // console.log(response);
-        setLoading(false);
-        if (response.data.message) {
-          ErrorNotify(response.data.message);
-        } else {
-          setLoading(false);
-          localStorage.setItem("token", response.data);
-          localStorage.setItem("email", email);
-          history.push("/userDashboard");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-        ErrorNotify("Incorrect Credentials");
-      });
-  };
-
+  
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
 
   const [validEmail, setValidEmail] = useState(false);
@@ -104,9 +70,6 @@ const UserSignup = () => {
       }
     })
       .then((response) => {
-        // console.log("response in get AllgetLoanRequests is: ", response.data);
-        // dispatch(LoadLoanRequests(response.data));
-        console.log("User Registration Successful!!");
         alert("User Registration Successful. Please login to apply for loan request");
         history.push('/userlogin');
         setLoading(false);
@@ -163,11 +126,13 @@ const UserSignup = () => {
                 <div className="two fields">
                   <div className="field">
                     <label>Email-Id</label>
-                    <input placeholder="EmailId" type="text" onChange={(e)=>setEmail(e.target.value)} />
+                    <input placeholder="EmailId" type="text" onChange={(e)=>validateAndSetEmail(e.target.value)} />
+                    <ErrorMsg show={showEmailError} msg={'Invalid e-mail!'} />
                   </div>
                   <div className="field">
                     <label>Password</label>
-                    <input placeholder="loanAmount" type="password" onChange={(e)=>setPassword(e.target.value)} />
+                    <input placeholder="loanAmount" type="password" onChange={(e)=>validateAndSetPassword(e.target.value)} />
+                    <ErrorMsg show={showPasswordError} msg={'Empty password!'} />
                   </div>
                 </div>
                 <div className="inline field">
@@ -176,7 +141,7 @@ const UserSignup = () => {
                     <label>I agree to the terms and conditions</label>
                   </div>
                 </div>
-                <div className="ui submit button" onClick = {onFormSubmit}>Submit</div>
+                <div className="ui submit button" onClick = {onFormSubmit} disabled={!validEmail || !validPassword}>Submit</div>
               </form>
           </div>
             </div>

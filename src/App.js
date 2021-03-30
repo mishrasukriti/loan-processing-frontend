@@ -9,7 +9,6 @@ import BankManagerAllLoanRequest from "./components/BankManager/LoanRequest/AllL
 import CRManagerAllLoanRequest from "./components/CRManager/LoanRequest/AllLoanRequest";
 import UserDashboard from "./components/User/LoanRequest/CheckLoanRequestStatus";
 import UserApplyLoan from "./components/User/LoanRequest/AllLoanRequest";
-import BankManagerApproveLoanRequest from "./components/BankManager/LoanRequest/ApproveLoanRequest";
 
 import BankManagerLogin from "./components/BankManager/BankManagerLogin";
 import CRManagerLogin from "./components/CRManager/CRManagerLogin";

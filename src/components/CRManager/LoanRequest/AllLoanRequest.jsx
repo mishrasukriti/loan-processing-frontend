@@ -2,17 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Sidenav from "../Sidenav";
 import { useSelector, useDispatch } from "react-redux";
+
 import { LoadLoanRequests } from "../../actions/index";
 import LoaderTemplate from "../templates/LoaderTemplate";
-import TitleTemplate from "../templates/TitleTemplate";
 import TableComponent from "../TableComponent";
 
 const Invoice = () => {
 
   const [isLoading, setLoading] = useState(true);
-  // const [searchSuccessful, setsSarchSuccessful] = useState(false);
-
-
 
   let results = useSelector((state) => state.loanRequests);
   const dispatch = useDispatch();
@@ -37,9 +34,8 @@ const Invoice = () => {
         }
       })
         .then((response) => {
-          console.log("response in get AllgetLoanRequests is: ", response.data);
+          console.log("response in get AllgetLoanRequests of crm is: ", response.data);
           dispatch(LoadLoanRequests(response.data));
-          console.log("results is: ", results);
           setLoading(false);
         })
         .catch((err) => {

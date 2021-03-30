@@ -6,8 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import ErrorMsg from '../ErrorMsg';
-import { Link } from "react-router-dom";
-
 
 
 const BankManagerLogin = () => {
@@ -32,7 +30,6 @@ const BankManagerLogin = () => {
       data: response,
     })
       .then((response) => {
-        // console.log(response);
         setLoading(false);
         if (response.data.message) {
           ErrorNotify(response.data.message);
@@ -117,7 +114,8 @@ const BankManagerLogin = () => {
                 <div class="field">
                   <label>Username</label>
                   <div class="ui left icon input">
-                    <input type="text" placeholder="Username" name="email" placeholder="enter email-id" onChange={(e) => validateAndSetEmail(e.target.value)}/>
+                    <input type="text"  name="email" placeholder="enter email-id" onChange={(e) => validateAndSetEmail(e.target.value)}/>
+                    <ErrorMsg show={showEmailError} msg={'Invalid e-mail!'} />
                     <i class="user icon"></i>
                   </div>
                 </div>
@@ -125,6 +123,7 @@ const BankManagerLogin = () => {
                   <label>Password</label>
                   <div class="ui left icon input">
                     <input type="password" name="password" placeholder="enter password" onChange={(e) => validateAndSetPassword(e.target.value)}/>
+                    <ErrorMsg show={showPasswordError} msg={'Empty password!'} />
                     <i class="lock icon"></i>
                   </div>
                 </div>

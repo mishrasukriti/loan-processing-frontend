@@ -6,11 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import ErrorMsg from '../ErrorMsg';
-import { Link } from "react-router-dom";
 
-
-
-const BankManagerLogin = () => {
+const CRManagerLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -24,7 +21,7 @@ const BankManagerLogin = () => {
   const loginUser = (event) => {
     setLoading(true);
     event.preventDefault();
-    
+
     const response = { email: email, password: password };
     axios({
       url: url,
@@ -32,7 +29,7 @@ const BankManagerLogin = () => {
       data: response,
     })
       .then((response) => {
-        // console.log(response);
+
         setLoading(false);
         if (response.data.message) {
           ErrorNotify(response.data.message);
@@ -40,6 +37,7 @@ const BankManagerLogin = () => {
           setLoading(false);
           localStorage.setItem("token", response.data);
           localStorage.setItem("email", email);
+          console.log("crManagerLogin Success");
           history.push("/crManagerDashboard");
         }
       })
@@ -92,61 +90,63 @@ const BankManagerLogin = () => {
         <div >
           <div >
             <div >
-            <nav>
-          {/* <div><img  src={logo} alt=""/> </div> */}
-            <div >
-              <div class="ui inverted segment">
-                <div class="ui inverted secondary pointing menu">
-                  <a class="item active" href="/userlogin">
-                  User
+              <nav>
+
+                <div >
+                  <div class="ui inverted segment">
+                    <div class="ui inverted secondary pointing menu">
+                      <a class="item active" href="/userlogin">
+                        User
                   </a>
-                  <a class="item" href="/crManagerlogin">
-                  CRManager
+                      <a class="item" href="/crManagerlogin">
+                        CRManager
                   </a>
-                  <a class="item" href="/bankManagerlogin">
-                  BankManager
+                      <a class="item" href="/bankManagerlogin">
+                        BankManager
                   </a>
-                </div>
-              </div>
-            </div>
-          </nav>
-          <div class="ui placeholder segment">
-          <div class="ui two column very relaxed stackable grid">
-            <div class="column">
-              <div class="ui form">
-                <div class="field">
-                  <label>Username</label>
-                  <div class="ui left icon input">
-                    <input type="text" placeholder="Username" name="email" placeholder="enter email-id" onChange={(e) => validateAndSetEmail(e.target.value)}/>
-                    <i class="user icon"></i>
+                    </div>
                   </div>
                 </div>
-                <div class="field">
-                  <label>Password</label>
-                  <div class="ui left icon input">
-                    <input type="password" name="password" placeholder="enter password" onChange={(e) => validateAndSetPassword(e.target.value)}/>
-                    <i class="lock icon"></i>
+              </nav>
+              <div class="ui placeholder segment">
+                <div class="ui two column very relaxed stackable grid">
+                  <div class="column">
+                    <div class="ui form">
+                      <div class="field">
+                        <label>Username</label>
+                        <div class="ui left icon input">
+                          <input type="text" name="email" placeholder="enter email-id" onChange={(e) => validateAndSetEmail(e.target.value)} />
+                          <ErrorMsg show={showEmailError} msg={'Invalid e-mail!'} />
+                          <i class="user icon"></i>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label>Password</label>
+                        <div class="ui left icon input">
+                          <input type="password" name="password" placeholder="enter password" onChange={(e) => validateAndSetPassword(e.target.value)} />
+                          <ErrorMsg show={showPasswordError} msg={'Empty password!'} />
+                          <i class="lock icon"></i>
+                        </div>
+                      </div>
+                      <div class="ui blue submit button" onClick={(e) => loginUser(e)} disabled={!validEmail || !validPassword}>Login</div>
+                    </div>
                   </div>
-                </div>
-                <div class="ui blue submit button" onClick={(e) => loginUser(e)} disabled={!validEmail || !validPassword}>Login</div>
-              </div>
-            </div>
-            <div class="middle aligned column">
-              <div class="ui big button">
-                <i class="signup icon"></i>
+                  <div class="middle aligned column">
+                    <div class="ui big button">
+                      <i class="signup icon"></i>
                 Sign Up
               </div>
-              <br/>
-              <div class="ui big button" onClick={(event) => {event.preventDefault();history.push("/");}}>
-                <i class="signup icon"></i>
+                    <br />
+                    <div class="ui big button" onClick={(event) => { event.preventDefault(); history.push("/"); }}>
+                      <i class="signup icon"></i>
                 Go Back
               </div>
-            </div>
+                  </div>
+                </div>
+                <div class="ui vertical divider">
+                  Or
           </div>
-          <div class="ui vertical divider">
-            Or
-          </div>
-        </div>
+              </div>
             </div>
           </div>
         </div>
@@ -155,4 +155,4 @@ const BankManagerLogin = () => {
   );
 };
 
-export default BankManagerLogin;
+export default CRManagerLogin;

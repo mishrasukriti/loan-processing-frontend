@@ -4,7 +4,6 @@ import Sidenav from "../Sidenav";
 import { useSelector, useDispatch } from "react-redux";
 import { LoadLoanRequests } from "../../actions/index";
 import LoaderTemplate from "../templates/LoaderTemplate";
-import TitleTemplate from "../templates/TitleTemplate";
 import TableComponent from "../TableComponent";
 
 const Invoice = () => {
@@ -39,7 +38,6 @@ const Invoice = () => {
         .then((response) => {
           console.log("response in get AllgetLoanRequests is: ", response.data);
           dispatch(LoadLoanRequests(response.data));
-          console.log("results is: ", results);
           setLoading(false);
         })
         .catch((err) => {

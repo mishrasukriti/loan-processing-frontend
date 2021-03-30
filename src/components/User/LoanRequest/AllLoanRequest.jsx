@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Sidenav from "../Sidenav";
-import { useSelector, useDispatch } from "react-redux";
-import { LoadLoanRequests } from "../../actions/index";
+
 import LoaderTemplate from "../templates/LoaderTemplate";
 
-const Invoice = () => {
+const AllLoanRequest = () => {
 
-  const [isLoading, setLoading] = useState(true);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [isLoading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [loanAmount, setLoanAmount] = useState(0);
   
-
-  // const [searchSuccessful, setsSarchSuccessful] = useState(false);
-
-
-
-  let results = useSelector((state) => state.loanRequests);
-  const dispatch = useDispatch();
-  
   const onFormSubmit= (e)=>{
     console.log("clicked on form submit")
-    // setLoading(true);
+
     const url = "https://loan-processing-backend.herokuapp.com/api/userActivity/applyLoan";
     const token = localStorage.getItem("token");
     const localStorageEmail = localStorage.getItem('email');
@@ -45,9 +34,7 @@ const Invoice = () => {
       }
     })
       .then((response) => {
-        console.log("response in get AllgetLoanRequests is: ", response.data);
-        // dispatch(LoadLoanRequests(response.data));
-        console.log("Loan Application Successful!!");
+        console.log("response in get AllgetLoanRequests which is loan amount is: ", response.data);
         alert("Loan Application Successful. Please note Loan requestId for further correspondence!!", response.data);
         setLoading(false);
       })
@@ -56,19 +43,6 @@ const Invoice = () => {
         setLoading(false);
       });
   }
-
-  useEffect(() => {
-    
-    const url = "https://loan-processing-backend.herokuapp.com/api/crmActivity/listCRMLoanRequests";
-    const getLoanRequests = async () => {
-      const token = localStorage.getItem("token");
-      const email = localStorage.getItem('email');
-      console.log("calling for crm email is: " + email);
-      setLoading(false);
-    };
-    getLoanRequests();
-  }, [dispatch]);
-
   
   return (
     <React.Fragment>
@@ -91,11 +65,11 @@ const Invoice = () => {
               <div className="two fields">
                   <div className="field">
                     <label>First Name</label>
-                    <input placeholder="firstName" type="text" onChange={(e)=>setFirstName(e.target.value)}/>
+                    <input placeholder="firstName" type="text" />
                   </div>
                   <div className="field">
                     <label>Last Name</label>
-                    <input placeholder="lastName" type="text" onChange={(e)=>setLastName(e.target.value)} />
+                    <input placeholder="lastName" type="text" />
                   </div>
                 </div>
                 <div className="two fields">
@@ -127,4 +101,4 @@ const Invoice = () => {
   );
 };
 
-export default Invoice;
+export default AllLoanRequest;
